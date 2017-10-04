@@ -24,6 +24,9 @@ def sillygame():
             print "You idiot. That wasn't the instruction. Please try again."
             continue
         guesses += 1
+        if guesses == 7:
+            print "Too many tries!"
+            break
         print "Too High = %d, Too Low = %d, Guess = %d" % (too_high, too_low, number)
         if number > secret_number:
             too_high = number
@@ -42,10 +45,12 @@ name = raw_input("Hello, what's your name?")
 print "Hello %s!" % name
 best_score = None
 while True:
-    playwithme = raw_input("Do you want to play a silly guessing game? Y or N ")
+    playwithme = raw_input("Do you want to play a silly guessing game? Y or N ").upper()
     if playwithme == "Y":
         score = sillygame()
-        if score < best_score or best_score is None:
+        if score == None:
+            print "Try again."
+        elif score < best_score or best_score is None:
             best_score = score
             print "Good job! You got the best score: %d" % best_score
         else:
